@@ -28,8 +28,6 @@ image: /img/blog/es6-expansion-operator-bug/1.webp
 
 ![图5](/img/blog/es6-expansion-operator-bug/5.webp)
 
----
-
 ## 解决问题
 
 1）首先通过项目根目录下执行`npx browserslist` ，查看筛选后兼容的浏览器（如图 6） ![图6](/img/blog/es6-expansion-operator-bug/6.webp)

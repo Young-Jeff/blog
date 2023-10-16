@@ -13,15 +13,11 @@ image: /img/blog/nuxt-import-sentry/1.webp
 
 > Sentry 是一个流行的错误监控平台，帮助开发者分析，修复问题，优化代码的性能。可以进行错误捕获，问题追踪，并提供问题详情，适用于多个平台，多种语言。
 
----
-
 ### sentry 后台
 
 1. sentry 默认是纯英文界面，左上角用户 > User settings > Account Details 修改中文，选择 Simplified Chinese 即可；一并把时区修改为东八区；修改后刷新网页即可显示中文 `提示：尽量第一次就把时区更改，否则下次再进行修改有可能一直修改失败（我就是这样）` ![image.png](/img/blog/nuxt-import-sentry/1.webp)
 
 2. 项目 > 右上角创建项目，选择一个平台；官网的 Platforms 选项中是没有 nuxt 的，所以 Platforms 选择 vue，其实配置上是一样的，配置文件不同而已（`vue.config.js/nuxt.config.js`）； 3.底部信息按实际填即可，项目名字即为实际项目名， 点击创建后，会自动跳转[接入文档指引](https://docs.sentry.io/platforms/javascript/guides/vue/) ![image.png](/img/blog/nuxt-import-sentry/2.webp)
-
----
 
 ### sentry 接入
 
@@ -49,8 +45,6 @@ image: /img/blog/nuxt-import-sentry/1.webp
 ![image.png](/img/blog/nuxt-import-sentry/5.webp)
 
 点进去就可看到详细信息 But 压缩混淆之后的代码就导致：即使代码报错了，我们也只能看到错误信息，还是非常难定位到具体是哪行代码出现的错误，如上图；所以我们如果要定位到问题所在还需要上传 sourcemap 文件。
-
----
 
 ### 上传 sourceMap
 
@@ -128,16 +122,12 @@ auth.token=8f9ca900719b4eed8ea8ed82726ddce006d2c8a105c4268b508069ebc7b1e
 
 还有一点：只需在生产环境(线上环境)上传 sourceMap 开发环境上传 sourceMap 文件过于频繁,sentry 会报错
 
----
-
 ok，忙活了那么久，又到了验证的时候！
 
 1. 同样，写一个 bug；
 2. 执行打包，上传 sourceMap，验证是否上传成功：找到自己项目>点击设置>source Map，如下图 ![image.png](/img/blog/nuxt-import-sentry/8.webp)
 
 然后去问题模块，找到错误信息，点进详情；可以看到，已经显示了具体位置； sourcemap 上传到 sentry 后，sentry 会通过反解 sourcemap，通过行列信息映射到源文件上； ![image.png](/img/blog/nuxt-import-sentry/9.webp)
-
----
 
 ### Sentry 面板介绍
 
@@ -146,8 +136,6 @@ ok，忙活了那么久，又到了验证的时候！
 ![image.png](/img/blog/nuxt-import-sentry/12.webp) 面包屑：还原出错误发生时，用户的关键操作路径，包括点击事件，发送请求，console log 等。 更精准的还原错误触发场景。通过全局监听 console，xhr，UI 等事件，SetTimeout 等方式实现
 
 ![image.png](/img/blog/nuxt-import-sentry/13.webp) 分别是错误页面，UA，用户，浏览器，设备等信息；
-
----
 
 ### 根据业务自定义错误详情面板
 
